@@ -30,6 +30,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
+Plug 'tpope/vim-fugitive'
 
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
@@ -40,7 +41,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'mattn/vim-goimports'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-commentary'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimlab/split-term.vim'
 Plug 'mattn/emmet-vim'
@@ -49,11 +50,12 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tomasr/molokai'
 Plug 'simeji/winresizer'
 Plug 'prettier/vim-prettier'
+Plug 'jacoborus/tender.vim'
 
 call plug#end()
 
 " ------colorscheme------
-colorscheme molokai
+colorscheme tender
 
 " ------NERDTree------
 map <C-n> :NERDTreeToggle<CR>
@@ -67,26 +69,36 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>h
-"prettier keymap
-nmap <silent> pr :Prettier
 
 "------Indent------
 let g:indent_guides_enable_on_vim_startup = 1
 
 "------airline------
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline_theme='molokai'
+let g:airline_theme='wombat'
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
+
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_symbols.crypt = '🔒'    "暗号化されたファイル
+let g:airline_symbols.linenr = '¶'      "行
+let g:airline_symbols.branch = '⭠'    "gitブランチ
+let g:airline_symbols.paste = 'ρ'     "ペーストモード
+let g:airline_symbols.spell = 'Ꞩ'     "スペルチェック
+let g:airline_symbols.notexists = '∄'   "gitで管理されていない場合
+let g:airline_symbols.whitespace = 'Ξ'  "空白の警告(余分な空白など)
+
+set laststatus=2 " ステータスラインを常に表示
+set showmode " 現在のモードを表示
+set ruler "ステータスラインの右側にカーソルの現在位置を表示する
  
 "左側に使用されるセパレータ
 let g:airline_left_sep = '⮀'
 let g:airline_left_alt_sep = '⮁'
 "右側に使用されるセパレータ
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
 let g:airline_right_sep = '⮂'
 let g:airline_right_alt_sep = '⮃'
 let g:airline_symbols.crypt = '🔒'		"暗号化されたファイル
@@ -97,6 +109,14 @@ let g:airline_symbols.paste = 'ρ'			"ペーストモード
 let g:airline_symbols.spell = 'Ꞩ'			"スペルチェック
 let g:airline_symbols.notexists = '∄'		"gitで管理されていない場合
 let g:airline_symbols.whitespace = 'Ξ'	"空白の警告(余分な空白など)
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 "------LSP config------
 nmap <silent> gd :LspDefinition<CR>
